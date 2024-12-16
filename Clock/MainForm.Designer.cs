@@ -31,22 +31,73 @@
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
 			this.labelTime = new System.Windows.Forms.Label();
+			this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+			this.cmTopmost = new System.Windows.Forms.ToolStripMenuItem();
+			this.cmShowDate = new System.Windows.Forms.ToolStripMenuItem();
+			this.cmShowWeekDay = new System.Windows.Forms.ToolStripMenuItem();
+			this.cmExit = new System.Windows.Forms.ToolStripMenuItem();
 			this.timer = new System.Windows.Forms.Timer(this.components);
 			this.cbShowDate = new System.Windows.Forms.CheckBox();
 			this.btnHideControls = new System.Windows.Forms.Button();
+			this.cbShowWeekDay = new System.Windows.Forms.CheckBox();
+			this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
+			this.contextMenu.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// labelTime
 			// 
 			this.labelTime.AutoSize = true;
+			this.labelTime.ContextMenuStrip = this.contextMenu;
 			this.labelTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.labelTime.Location = new System.Drawing.Point(12, 9);
 			this.labelTime.Name = "labelTime";
 			this.labelTime.Size = new System.Drawing.Size(231, 55);
 			this.labelTime.TabIndex = 0;
 			this.labelTime.Text = "labelTime";
+			this.labelTime.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			this.labelTime.Click += new System.EventHandler(this.label1_Click);
 			this.labelTime.DoubleClick += new System.EventHandler(this.labelTime_DoubleClick);
+			// 
+			// contextMenu
+			// 
+			this.contextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cmTopmost,
+            this.cmShowDate,
+            this.cmShowWeekDay,
+            this.cmExit});
+			this.contextMenu.Name = "contextMenu";
+			this.contextMenu.Size = new System.Drawing.Size(153, 92);
+			// 
+			// cmTopmost
+			// 
+			this.cmTopmost.CheckOnClick = true;
+			this.cmTopmost.Name = "cmTopmost";
+			this.cmTopmost.Size = new System.Drawing.Size(152, 22);
+			this.cmTopmost.Text = "Topmost";
+			this.cmTopmost.CheckedChanged += new System.EventHandler(this.cmTopmost_CheckedChanged);
+			// 
+			// cmShowDate
+			// 
+			this.cmShowDate.CheckOnClick = true;
+			this.cmShowDate.Name = "cmShowDate";
+			this.cmShowDate.Size = new System.Drawing.Size(152, 22);
+			this.cmShowDate.Text = "Show date";
+			this.cmShowDate.CheckedChanged += new System.EventHandler(this.cmShowDate_CheckedChanged);
+			// 
+			// cmShowWeekDay
+			// 
+			this.cmShowWeekDay.CheckOnClick = true;
+			this.cmShowWeekDay.Name = "cmShowWeekDay";
+			this.cmShowWeekDay.Size = new System.Drawing.Size(152, 22);
+			this.cmShowWeekDay.Text = "Show weekday";
+			this.cmShowWeekDay.CheckedChanged += new System.EventHandler(this.cmShowweekday_CheckedChanged);
+			// 
+			// cmExit
+			// 
+			this.cmExit.Name = "cmExit";
+			this.cmExit.Size = new System.Drawing.Size(152, 22);
+			this.cmExit.Text = "Exit";
+			this.cmExit.Click += new System.EventHandler(this.cmExit_Click);
 			// 
 			// timer
 			// 
@@ -57,18 +108,18 @@
 			// 
 			this.cbShowDate.AutoSize = true;
 			this.cbShowDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.cbShowDate.Location = new System.Drawing.Point(41, 150);
+			this.cbShowDate.Location = new System.Drawing.Point(41, 264);
 			this.cbShowDate.Name = "cbShowDate";
 			this.cbShowDate.Size = new System.Drawing.Size(176, 29);
 			this.cbShowDate.TabIndex = 1;
 			this.cbShowDate.Text = "Показать дату";
 			this.cbShowDate.UseVisualStyleBackColor = true;
-			this.cbShowDate.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+			this.cbShowDate.CheckedChanged += new System.EventHandler(this.cbShowDate_CheckedChanged);
 			// 
 			// btnHideControls
 			// 
 			this.btnHideControls.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.btnHideControls.Location = new System.Drawing.Point(41, 194);
+			this.btnHideControls.Location = new System.Drawing.Point(41, 349);
 			this.btnHideControls.Name = "btnHideControls";
 			this.btnHideControls.Size = new System.Drawing.Size(176, 53);
 			this.btnHideControls.TabIndex = 2;
@@ -76,19 +127,42 @@
 			this.btnHideControls.UseVisualStyleBackColor = true;
 			this.btnHideControls.Click += new System.EventHandler(this.btnHideControls_Click);
 			// 
+			// cbShowWeekDay
+			// 
+			this.cbShowWeekDay.AutoSize = true;
+			this.cbShowWeekDay.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.cbShowWeekDay.Location = new System.Drawing.Point(41, 299);
+			this.cbShowWeekDay.Name = "cbShowWeekDay";
+			this.cbShowWeekDay.Size = new System.Drawing.Size(256, 29);
+			this.cbShowWeekDay.TabIndex = 3;
+			this.cbShowWeekDay.Text = "Показать день недели";
+			this.cbShowWeekDay.UseVisualStyleBackColor = true;
+			this.cbShowWeekDay.CheckedChanged += new System.EventHandler(this.cbShowWeekDay_CheckedChanged);
+			// 
+			// notifyIcon
+			// 
+			this.notifyIcon.ContextMenuStrip = this.contextMenu;
+			this.notifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon.Icon")));
+			this.notifyIcon.Text = "Clock PV_319";
+			this.notifyIcon.Visible = true;
+			this.notifyIcon.DoubleClick += new System.EventHandler(this.notifyIcon_DoubleClick);
+			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(717, 388);
+			this.ClientSize = new System.Drawing.Size(312, 443);
+			this.Controls.Add(this.cbShowWeekDay);
 			this.Controls.Add(this.btnHideControls);
 			this.Controls.Add(this.cbShowDate);
 			this.Controls.Add(this.labelTime);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "MainForm";
+			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "Clock PV_319";
 			this.Load += new System.EventHandler(this.Form1_Load);
+			this.contextMenu.ResumeLayout(false);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -100,6 +174,13 @@
 		private System.Windows.Forms.Timer timer;
 		private System.Windows.Forms.CheckBox cbShowDate;
 		private System.Windows.Forms.Button btnHideControls;
+		private System.Windows.Forms.CheckBox cbShowWeekDay;
+		private System.Windows.Forms.NotifyIcon notifyIcon;
+		private System.Windows.Forms.ContextMenuStrip contextMenu;
+		private System.Windows.Forms.ToolStripMenuItem cmTopmost;
+		private System.Windows.Forms.ToolStripMenuItem cmShowDate;
+		private System.Windows.Forms.ToolStripMenuItem cmShowWeekDay;
+		private System.Windows.Forms.ToolStripMenuItem cmExit;
 	}
 }
 
