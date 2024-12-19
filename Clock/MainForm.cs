@@ -23,9 +23,9 @@ namespace Clock
 		}
 		void SetVisibility(bool visible)
 		{
-			cbShowDate.Visible = Visible;
-			cbShowWeekDay.Visible = Visible;
-			btnHideControls.Visible = Visible;
+			cbShowDate.Visible = visible;
+			cbShowWeekDay.Visible = visible;
+			btnHideControls.Visible = visible;
 			this.TransparencyKey = visible ? Color.Empty : this.BackColor;
 			this.FormBorderStyle = visible ? FormBorderStyle.FixedToolWindow : FormBorderStyle.None;
 			this.ShowInTaskbar = visible;

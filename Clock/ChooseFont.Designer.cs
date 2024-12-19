@@ -47,6 +47,7 @@
 			this.cbFonts.Name = "cbFonts";
 			this.cbFonts.Size = new System.Drawing.Size(548, 21);
 			this.cbFonts.TabIndex = 0;
+			this.cbFonts.SelectedIndexChanged += new System.EventHandler(this.cbFonts_SelectedIndexChanged);
 			// 
 			// nudFontSize
 			// 
