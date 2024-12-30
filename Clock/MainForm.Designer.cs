@@ -37,14 +37,16 @@
 			this.cmShowDate = new System.Windows.Forms.ToolStripMenuItem();
 			this.cmShowWeekDay = new System.Windows.Forms.ToolStripMenuItem();
 			this.colorsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.backgroundColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.foregroundColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.cmExit = new System.Windows.Forms.ToolStripMenuItem();
 			this.timer = new System.Windows.Forms.Timer(this.components);
 			this.cbShowDate = new System.Windows.Forms.CheckBox();
 			this.btnHideControls = new System.Windows.Forms.Button();
 			this.cbShowWeekDay = new System.Windows.Forms.CheckBox();
 			this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
-			this.backgroundColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.foregroundColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.cmChooseFont = new System.Windows.Forms.ToolStripMenuItem();
+			this.cmShowConsole = new System.Windows.Forms.ToolStripMenuItem();
 			this.contextMenu.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -68,10 +70,12 @@
             this.cmShowControls,
             this.cmShowDate,
             this.cmShowWeekDay,
+            this.cmShowConsole,
+            this.cmChooseFont,
             this.colorsToolStripMenuItem,
             this.cmExit});
 			this.contextMenu.Name = "contextMenu";
-			this.contextMenu.Size = new System.Drawing.Size(181, 158);
+			this.contextMenu.Size = new System.Drawing.Size(181, 202);
 			// 
 			// cmTopmost
 			// 
@@ -113,6 +117,20 @@
 			this.colorsToolStripMenuItem.Name = "colorsToolStripMenuItem";
 			this.colorsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
 			this.colorsToolStripMenuItem.Text = "Colors";
+			// 
+			// backgroundColorToolStripMenuItem
+			// 
+			this.backgroundColorToolStripMenuItem.Name = "backgroundColorToolStripMenuItem";
+			this.backgroundColorToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
+			this.backgroundColorToolStripMenuItem.Text = "Background color";
+			this.backgroundColorToolStripMenuItem.Click += new System.EventHandler(this.SetColor);
+			// 
+			// foregroundColorToolStripMenuItem
+			// 
+			this.foregroundColorToolStripMenuItem.Name = "foregroundColorToolStripMenuItem";
+			this.foregroundColorToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
+			this.foregroundColorToolStripMenuItem.Text = "Foreground color";
+			this.foregroundColorToolStripMenuItem.Click += new System.EventHandler(this.SetColor);
 			// 
 			// cmExit
 			// 
@@ -169,19 +187,20 @@
 			this.notifyIcon.Visible = true;
 			this.notifyIcon.DoubleClick += new System.EventHandler(this.notifyIcon_DoubleClick);
 			// 
-			// backgroundColorToolStripMenuItem
+			// cmChooseFont
 			// 
-			this.backgroundColorToolStripMenuItem.Name = "backgroundColorToolStripMenuItem";
-			this.backgroundColorToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-			this.backgroundColorToolStripMenuItem.Text = "Background color";
-			this.backgroundColorToolStripMenuItem.Click += new System.EventHandler(this.SetColor);
+			this.cmChooseFont.Name = "cmChooseFont";
+			this.cmChooseFont.Size = new System.Drawing.Size(180, 22);
+			this.cmChooseFont.Text = "Choose font";
+			this.cmChooseFont.Click += new System.EventHandler(this.cmChooseFont_Click);
 			// 
-			// foregroundColorToolStripMenuItem
+			// cmShowConsole
 			// 
-			this.foregroundColorToolStripMenuItem.Name = "foregroundColorToolStripMenuItem";
-			this.foregroundColorToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-			this.foregroundColorToolStripMenuItem.Text = "Foreground color";
-			this.foregroundColorToolStripMenuItem.Click += new System.EventHandler(this.SetColor);
+			this.cmShowConsole.CheckOnClick = true;
+			this.cmShowConsole.Name = "cmShowConsole";
+			this.cmShowConsole.Size = new System.Drawing.Size(180, 22);
+			this.cmShowConsole.Text = "Show console";
+			this.cmShowConsole.CheckedChanged += new System.EventHandler(this.cmShowConsole_CheckedChanged);
 			// 
 			// MainForm
 			// 
@@ -220,6 +239,8 @@
 		private System.Windows.Forms.ToolStripMenuItem colorsToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem backgroundColorToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem foregroundColorToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem cmChooseFont;
+		private System.Windows.Forms.ToolStripMenuItem cmShowConsole;
 	}
 }
 
