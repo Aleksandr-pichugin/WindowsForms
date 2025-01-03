@@ -14,16 +14,26 @@ namespace Clock
 {
 	public partial class ChooseFontForm : Form
 	{
-		public Font font { get; set; }
+		public Font Font { get; set; }
+		public string Filename { get; set; }
 		public ChooseFontForm()
 		{
 			InitializeComponent();
 			LoadFonts();
-			cbFonts.SelectedIndex= 0;
+			cbFonts.SelectedIndex = 0;
+		}
+		public ChooseFontForm(string font_name, int font_size)
+		{ 
+			InitializeComponent();
+			Filename = font_name;
+			nudFontSize.Value = font_size;
+			LoadFonts();
+			cbFonts.SelectedIndex = cbFonts.Items.IndexOf(Filename);
+			Font=labelExample.Font;
 		}
 		void LoadFonts()
 		{
-			Directory.SetCurrentDirectory("..\\..\\Fonts");
+			//Directory.SetCurrentDirectory("..\\..\\Fonts");
 			Console.WriteLine(Directory.GetCurrentDirectory());
 
 			cbFonts.Items.AddRange(GetFontsFormat("*.ttf"));
@@ -33,7 +43,9 @@ namespace Clock
 		{
 			string[] files=Directory.GetFiles(Directory.GetCurrentDirectory(),format );
 			for (int i = 0; i < files.Length; i++)
+			{
 				files[i] = files[i].Split('\\').Last();
+			}
 			return files;
 		}
 
@@ -46,8 +58,9 @@ namespace Clock
 		}
 		private void btnOK_Click(object sender, EventArgs e)
 		{
-			Font=labelExample.Font;
 			cbFonts_SelectedIndexChanged(sender, e);
+			Font=labelExample.Font;
+			Filename = cbFonts.SelectedItem.ToString();
 		}
 
 		private void btnApply_Click(object sender, EventArgs e)
