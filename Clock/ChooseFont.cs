@@ -39,14 +39,20 @@ namespace Clock
 
 		private void cbFonts_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			PrivateFontCollection pfc= new PrivateFontCollection();
-			String full_name = ($"{Directory.GetCurrentDirectory()}\\{cbFonts.SelectedItem}");
+			PrivateFontCollection pfc = new PrivateFontCollection();
+			string full_name = $"{Directory.GetCurrentDirectory()}\\{cbFonts.SelectedItem}";
 			pfc.AddFontFile(full_name);
-			labelExample.Font=new Font(pfc.Families[0],Convert.ToInt32(nudFontSize.Value));
+			labelExample.Font = new Font(pfc.Families[0], Convert.ToInt32(nudFontSize.Value));
 		}
 		private void btnOK_Click(object sender, EventArgs e)
 		{
 			Font=labelExample.Font;
+			cbFonts_SelectedIndexChanged(sender, e);
+		}
+
+		private void btnApply_Click(object sender, EventArgs e)
+		{
+			cbFonts_SelectedIndexChanged(sender, e);
 		}
 	}
 }
