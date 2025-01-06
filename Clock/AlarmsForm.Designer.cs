@@ -1,6 +1,6 @@
 ﻿namespace Clock
 {
-	partial class Alarms
+	partial class AlarmsForm
 	{
 		/// <summary>
 		/// Required designer variable.
@@ -31,21 +31,21 @@
 			this.lbAlarms = new System.Windows.Forms.ListBox();
 			this.btnOK = new System.Windows.Forms.Button();
 			this.btnAdd = new System.Windows.Forms.Button();
-			this.btnDelit = new System.Windows.Forms.Button();
+			this.btnDelete = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// lbAlarms
 			// 
 			this.lbAlarms.FormattingEnabled = true;
-			this.lbAlarms.Location = new System.Drawing.Point(27, 13);
+			this.lbAlarms.Location = new System.Drawing.Point(12, 12);
 			this.lbAlarms.Name = "lbAlarms";
-			this.lbAlarms.Size = new System.Drawing.Size(543, 394);
+			this.lbAlarms.Size = new System.Drawing.Size(695, 433);
 			this.lbAlarms.TabIndex = 0;
-			this.lbAlarms.SelectedIndexChanged += new System.EventHandler(this.lbAlarms_SelectedIndexChanged);
 			// 
 			// btnOK
 			// 
-			this.btnOK.Location = new System.Drawing.Point(584, 13);
+			this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
+			this.btnOK.Location = new System.Drawing.Point(713, 12);
 			this.btnOK.Name = "btnOK";
 			this.btnOK.Size = new System.Drawing.Size(75, 23);
 			this.btnOK.TabIndex = 1;
@@ -54,33 +54,34 @@
 			// 
 			// btnAdd
 			// 
-			this.btnAdd.Location = new System.Drawing.Point(584, 42);
+			this.btnAdd.Location = new System.Drawing.Point(713, 41);
 			this.btnAdd.Name = "btnAdd";
 			this.btnAdd.Size = new System.Drawing.Size(75, 23);
 			this.btnAdd.TabIndex = 2;
 			this.btnAdd.Text = "Add";
 			this.btnAdd.UseVisualStyleBackColor = true;
+			this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
 			// 
-			// btnDelit
+			// btnDelete
 			// 
-			this.btnDelit.Location = new System.Drawing.Point(584, 72);
-			this.btnDelit.Name = "btnDelit";
-			this.btnDelit.Size = new System.Drawing.Size(75, 23);
-			this.btnDelit.TabIndex = 3;
-			this.btnDelit.Text = "Delete";
-			this.btnDelit.UseVisualStyleBackColor = true;
+			this.btnDelete.Location = new System.Drawing.Point(713, 70);
+			this.btnDelete.Name = "btnDelete";
+			this.btnDelete.Size = new System.Drawing.Size(75, 23);
+			this.btnDelete.TabIndex = 3;
+			this.btnDelete.Text = "Delete";
+			this.btnDelete.UseVisualStyleBackColor = true;
 			// 
-			// Alarms
+			// AlarmsForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(671, 450);
-			this.Controls.Add(this.btnDelit);
+			this.ClientSize = new System.Drawing.Size(800, 450);
+			this.Controls.Add(this.btnDelete);
 			this.Controls.Add(this.btnAdd);
 			this.Controls.Add(this.btnOK);
 			this.Controls.Add(this.lbAlarms);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-			this.Name = "Alarms";
+			this.Name = "AlarmsForm";
 			this.Text = "Alarms";
 			this.ResumeLayout(false);
 
@@ -91,6 +92,6 @@
 		private System.Windows.Forms.ListBox lbAlarms;
 		private System.Windows.Forms.Button btnOK;
 		private System.Windows.Forms.Button btnAdd;
-		private System.Windows.Forms.Button btnDelit;
+		private System.Windows.Forms.Button btnDelete;
 	}
 }

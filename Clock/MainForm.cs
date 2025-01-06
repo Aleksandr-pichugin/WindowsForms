@@ -19,6 +19,7 @@ namespace Clock
 	public partial class MainForm : Form
 	{
 		ChooseFontForm fontDialog = null;
+		AlarmsForm alarms = null;
 		public MainForm()
 		{
 			InitializeComponent();
@@ -29,8 +30,9 @@ namespace Clock
 			SetVisibility(false);
 
 			cmShowConsole.Checked = true;
-			//fontDialog = new ChooseFontForm();								
 			LoadSettings();
+			//fontDialog = new ChooseFontForm();								
+			alarms = new AlarmsForm();
 		}
 		void SetVisibility(bool visible)
 		{
@@ -72,13 +74,14 @@ namespace Clock
 			string font_name = sr.ReadLine();
 			int font_size = (int)Convert.ToDouble(sr.ReadLine());
 			sr.Close();
-			fontDialog = new ChooseFontForm(font_name, font_size); 
+			fontDialog = new ChooseFontForm(this, font_name, font_size); 
 			labelTime.Font = fontDialog.Font;
 		}
 		private void timer_Tick(object sender, EventArgs e)
 		{
 
-			labelTime.Text = DateTime.Now.ToString(
+			labelTime.Text = DateTime.Now.ToString
+				(
 				"hh:mm:ss tt",
 				System.Globalization.CultureInfo.InvariantCulture
 				);
@@ -177,7 +180,7 @@ namespace Clock
 		private void SetColor (object sender, EventArgs e)
 		{
 			ColorDialog dialog = new ColorDialog();
-			dialog.Color=labelTime.BackColor;
+			//dialog.Color=labelTime.BackColor;
 				switch((sender as ToolStripMenuItem).Text) // as - это оператор преобразования типа
 				{										   // оператор 'as' значение слева приводит к типу справа   
 					case "Background color": dialog.Color = labelTime.BackColor; break;
@@ -225,6 +228,13 @@ namespace Clock
 			if (cmLoadOnWinStartup.Checked) rk.SetValue(key_name, Application.ExecutablePath);
 			else rk.DeleteValue(key_name, false);
 			rk.Dispose();
+		}
+
+		private void cmAlarm_Click(object sender, EventArgs e)
+		{
+			alarms.StartPosition = FormStartPosition.Manual;
+			alarms.Location = new Point(this.Location.X - alarms.Width, this.Location.Y*2);
+			alarms.ShowDialog();
 		}
 	}
 }
